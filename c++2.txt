@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstdlib>  // Для використання rand()
+
+const int MAX_ROWS = 20;
+const int MAX_COLS = 20;
+
+int main() {
+    double matrix[MAX_ROWS][MAX_COLS];
+
+    // Заповнення масиву випадковими значеннями
+    for (int i = 0; i < MAX_ROWS; ++i) {
+        for (int j = 0; j < MAX_COLS; ++j) {
+            matrix[i][j] = static_cast<double>(rand()) / RAND_MAX;  // Випадкове дійсне число [0, 1)
+        }
+    }
+
+    // Знаходження та виведення мінімального елемента для кожного рядка
+    for (int i = 0; i < MAX_ROWS; ++i) {
+        double minElement = matrix[i][0];
+        for (int j = 1; j < MAX_COLS; ++j) {
+            if (matrix[i][j] < minElement) {
+                minElement = matrix[i][j];
+            }
+        }
+        std::cout << "Мінімальний елемент для рядка " << i+1 << ": " << minElement << std::endl;
+    }
+
+    return 0;
+}
